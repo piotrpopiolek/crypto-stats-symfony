@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class LuckyController
+class MainController
 {
     public function index()
     {

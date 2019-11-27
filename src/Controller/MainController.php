@@ -21,6 +21,8 @@ class MainController extends AbstractController
             $autorization
         );
 
-        return $this->render('main/main.html.twig');
+        $coins = $response->body;
+
+        return $this->render('main/main.html.twig', array('coins' => $coins));
     }
 }

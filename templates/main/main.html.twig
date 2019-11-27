@@ -1,3 +1,10 @@
+{% extends 'base.html.twig' %}
 
+{% block title %}Crypto
+{% endblock %}
 
-<h1>Test</h1>
+{% block body %}
+
+{{ coins|json_encode(constant('JSON_PRETTY_PRINT')) }}
+
+{% endblock %}

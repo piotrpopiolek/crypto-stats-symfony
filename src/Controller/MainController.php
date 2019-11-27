@@ -3,21 +3,24 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Unirest;
 
-class MainController
+class MainController extends AbstractController
 {
     public function index()
     {
 
-        $response = Unirest\Request::get(
-            "https://coingecko.p.rapidapi.com/coins/markets?page=1&per_page=100&order=market_cap_desc&vs_currency=usd",
-            array(
-                "X-RapidAPI-Host" => "coingecko.p.rapidapi.com",
-                "X-RapidAPI-Key" => "002a3e6fd9msh804451a0819bffep107d46jsnd06912c8e7d7"
-            )
+        $autorization = array(
+            "X-RapidAPI-Host" => "coingecko.p.rapidapi.com",
+            "X-RapidAPI-Key" => "002a3e6fd9msh804451a0819bffep107d46jsnd06912c8e7d7"
         );
 
-        return $response;
+        $response = Unirest\Request::get(
+            "https://coingecko.p.rapidapi.com/coins/markets?page=1&per_page=100&order=market_cap_desc&vs_currency=usd",
+            $autorization
+        );
+
+        return $this->render('main/main.html.twig', array('body' => $response->body));
     }
 }
